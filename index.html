@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! - Special Surprise for You ✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky: {
+                            50: '#fff0f5',
+                            100: '#ffe4ed',
+                            200: '#ffcce0',
+                            300: '#ff99c2',
+                            400: '#ff66a3',
+                            500: '#ff3385',
+                            main: '#ff85a2',
+                            soft: '#ffb3c6',
+                            deep: '#d81b60',
+                            dark: '#9a004b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        cursive: ['"Sacramento"', 'cursive'],
+                    },
+                    boxShadow: {
+                        'pink-glow': '0 10px 25px -5px rgba(255, 133, 162, 0.4), 0 8px 10px -6px rgba(255, 133, 162, 0.2)',
+                        'pink-card': '0 10px 30px -5px rgba(255, 133, 162, 0.15)',
+                        'pink-lg': '0 20px 35px -10px rgba(255, 133, 162, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fff8fa;
+            color: #4a3e43;
+            overflow-x: hidden;
+        }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 228, 237, 0.8);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffb3c6;
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff85a2;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .animate-float-slow {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .animate-float-fast {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .bg-pink-gradient {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ed 50%, #ffcce0 100%);
+        }
+        
+        .bg-hero-pattern {
+            background-image: radial-gradient(#ff85a2 0.75px, transparent 0.75px), radial-gradient(#ff85a2 0.75px, #fff0f5 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-opacity: 0.15;
+        }
+
+        /* Partikel Terbang (Love & Bintang) */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+            z-index: 50;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.3) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-24 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 w-full glass-header border-b border-pinky-100 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pinky-main to-pinky-soft flex items-center justify-center text-white text-xl font-bold shadow-pink-glow group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-2xl tracking-wide text-gray-800 group-hover:text-pinky-main transition-colors">Special <span class="text-pinky-main">Your</span></span>
+                    <span class="text-[10px] tracking-widest text-pinky-400 font-semibold uppercase -mt-1">Birthday </span>
+                </div>
+            </a>
+
+            <!-- Nav Links Desktop -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-gray-600 text-sm">
+                <a href="#hero" class="hover:text-pinky-main transition-colors font-semibold text-pinky-main">Beranda</a>
+                <a href="#wish" class="hover:text-pinky-main transition-colors">Doa & Harapan</a>
+                <a href="#gallery" class="hover:text-pinky-main transition-colors">Galeri Kenangan</a>
+                <a href="#gift" class="hover:text-pinky-main transition-colors">Wishlist Kado</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Heart Counter Button -->
+                <button id="love-btn" onclick="sendLove()" class="relative bg-gradient-to-r from-pinky-main to-pinky-soft hover:from-pinky-500 hover:to-pinky-main text-white px-4 py-2.5 rounded-full font-semibold text-sm flex items-center gap-2 shadow-pink-glow hover:shadow-pink-lg transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-heart text-base"></i>
+                    <span class="hidden sm:inline">Kirim Love</span>
+                    <span id="love-counter" class="bg-white text-pinky-main text-xs font-extrabold px-2 py-0.5 rounded-full ml-1 min-w-[20px] text-center shadow-sm">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-8 pb-16 md:py-20 bg-pink-gradient bg-hero-pattern overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-80 h-80 bg-pinky-200 rounded-full filter blur-3xl opacity-60"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-pinky-300 rounded-full filter blur-3xl opacity-40"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/80 border border-pinky-300 px-4 py-1.5 rounded-full text-pinky-main font-bold text-xs uppercase tracking-widest shadow-sm mb-6 animate-pulse">
+                        <i class="fa-solid fa-sparkles"></i> Happy Birthday Cantik!
+                    </div>
+                    <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
+                        Selamat Ulang Tahun <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pinky-main via-pinky-500 to-pinky-dark">
+                            Nayla Syafira Ramadhina 💖
+                        </span>
+                    </h1>
+                    <p class="text-gray-600 text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Hari ini adalah hari yang sangat spesial. Semoga di usia kamu yang baru ini selalu dipenuhi dengan kebahagiaan, kesehatan, keberkahan, dan tercapai segala cita-citamu!
+                    </p>
+
+                    <!-- Hero Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="openSecretModal()" class="bg-gradient-to-r from-pinky-main to-pinky-500 text-white font-bold px-8 py-4 rounded-full shadow-pink-glow hover:shadow-pink-lg hover:scale-105 transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                            <span>Buka Surat Pesan</span>
+                        </button>
+                        <a href="#wish" class="bg-white hover:bg-pinky-50 text-pinky-main font-bold px-8 py-4 rounded-full border-2 border-pinky-main shadow-sm hover:scale-105 transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Lihat Ucapan</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Image Showcase -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-pinky-200 via-pinky-main to-white p-3 shadow-pink-lg">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Birthday Cake" class="w-full h-full object-cover rounded-full shadow-inner transform hover:scale-105 transition-transform duration-500">
+                    </div>
+
+                    <!-- Floating Badge 1 -->
+                    <div class="absolute -top-4 -left-2 sm:left-2 bg-white/95 backdrop-blur-sm border border-pinky-200 p-3 rounded-2xl shadow-pink-card flex items-center gap-3 animate-float-slow">
+                        <div class="w-10 h-10 rounded-xl bg-pinky-100 flex items-center justify-center text-pinky-main text-xl">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-800">Make A Wish!</p>
+                            <p class="text-[10px] text-gray-500">Tiup Lilin Nya</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2 -->
+                    <div class="absolute bottom-2 -right-2 sm:right-2 bg-white/95 backdrop-blur-sm border border-pinky-200 p-3.5 rounded-2xl shadow-pink-card flex items-center gap-3 animate-float-fast">
+                        <div class="w-10 h-10 rounded-xl bg-pinky-100 flex items-center justify-center text-pinky-main text-xl">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] bg-pinky-100 text-pinky-main px-2 py-0.5 rounded-full font-bold">Special For You</span>
+                            <p class="text-xs font-bold text-gray-800">Wish You All The Best</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Wish Cards Section -->
+    <section id="wish" class="py-16 bg-pinky-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-pinky-main font-bold text-xs uppercase tracking-widest bg-pinky-100 px-3 py-1 rounded-full">Doa & Harapan</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl text-gray-900 mt-2 mb-4">Kartu Ucapan </h2>
+                <p class="text-gray-600 text-sm">Doa terbaik yang dikirimkan khusus untuk hari bahagiamu.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-pink-card transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-pinky-100 flex items-center justify-center text-pinky-main text-2xl mb-4">
+                        ✨
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-800 mb-2">Panjang Umur & Sehat</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">"Semoga selalu diberikan kesehatan, umur yang panjang, rezeki yang melimpah, dan kebahagiaan yang gakan ada habisnya selama kamu menjalani hari kamu"</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-pink-card transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-pinky-100 flex items-center justify-center text-pinky-main text-2xl mb-4">
+                        🌸
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-800 mb-2">Tercapai Cita-cita</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">"Semoga semua impian dan cita cita kamu segera terwujud. Kamu perempuan hebat yang pernah aku temuin"</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-pink-card transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-pinky-100 flex items-center justify-center text-pinky-main text-2xl mb-4">
+                        💖
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gray-800 mb-2">Selalu Bahagia</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">"Terus senyum, karena senyum kamu indah dan terima kasih telah hadir dan menjadi sosok yang selalu membawa warna indah bagi orang di sekitarmu dan juga aku tentunya."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-white border-t border-pinky-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-pinky-main font-bold text-xs uppercase tracking-widest bg-pinky-100 px-3 py-1 rounded-full">My favorit Human</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl text-gray-900 mt-2 mb-4">Foto Cantik Kamu</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+                <img src="Nayla 1.jpeg" class="rounded-2xl object-cover h-48 w-full shadow-md hover:scale-105 transition-transform duration-300">
+                <img src="Nayla 2.jpeg" class="rounded-2xl object-cover h-48 w-full shadow-md hover:scale-105 transition-transform duration-300">
+            </div>
+        </div>
+    </section>
+
+    <!-- Secret Message Modal -->
+    <div id="secret-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 text-center">
+            <button onclick="closeSecretModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pinky-main">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="w-16 h-16 bg-pinky-100 text-pinky-main rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                💌
+            </div>
+            <h3 class="font-serif font-bold text-2xl text-gray-800 mb-2">Pesan Rahasia</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-6 italic">
+                "Selamat ulang tahun Nayla Syafira Cantik, Kamu orang spesial, ketika orang lain natap aku sebagai sampah, kamu natap aku sebagai manusia, makasih udah mau bertahan selama ini, Lovee youuu nuyyy!"
+            </p>
+            <button onclick="closeSecretModal()" class="bg-pinky-main text-white font-bold px-8 py-3 rounded-full text-xs shadow-pink-glow hover:bg-pinky-500 transition-all">
+                Tutup Pesan 💖
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-20 border-t-4 border-pinky-main">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-400">
+            <p>Made with Your Boy for your special birthday.</p>
+        </div>
+    </footer>
+
+    <script>
+        let loveCount = 0;
+        let isPlaying = false;
+
+        // Bikin Partikel Terbang (Love & Bintang)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const items = ['💖', '✨', '💕', '⭐', '🌸', '🎈', '✨'];
+            particle.innerHTML = items[Math.floor(Math.random() * items.length)];
+
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.fontSize = (Math.random() * 20 + 14) + 'px';
+            particle.style.animationDuration = (Math.random() * 3 + 3.5) + 's';
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 6500);
+        }
+
+        // Jalankan partikel melayang terus menerus
+        setInterval(createParticle, 300);
+
+        function sendLove() {
+            loveCount++;
+            document.getElementById('love-counter').textContent = loveCount;
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createParticle, i * 50);
+            }
+            showToast('Love terkirim! 💖');
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (isPlaying) {
+                audio.pause();
+                btn.classList.remove('bg-pinky-main', 'text-white');
+                btn.classList.add('bg-pinky-100', 'text-pinky-main');
+            } else {
+                audio.play().catch(() => {});
+                btn.classList.remove('bg-pinky-100', 'text-pinky-main');
+                btn.classList.add('bg-pinky-main', 'text-white');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function openSecretModal() {
+            const modal = document.getElementById('secret-modal');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.children[0].classList.remove('scale-95');
+        }
+
+        function closeSecretModal() {
+            const modal = document.getElementById('secret-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.add('scale-95');
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-gray-900/90 backdrop-blur-sm text-white px-4 py-3 rounded-2xl shadow-pink-glow text-xs font-semibold flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto border border-pinky-main/40';
+            toast.innerHTML = `<i class="fa-solid fa-heart text-pinky-main"></i> <span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="Nayla.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById('bgMusic');
+            if (audio) {
+                audio.play().catch(function(err) {
+                    console.log("Autoplay terhalang:", err);
+                });
+            }
+        }
+        document.addEventListener('click', playAudio, { once: true });
+    </script>
+
+</body>
+</html>
