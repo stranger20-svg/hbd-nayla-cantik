@@ -397,22 +397,43 @@
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
-    </script>
+    <!-- Floating Music Button -->
+    <button id="musicToggle" class="fixed bottom-5 right-5 z-50 bg-white/80 backdrop-blur-md p-3 rounded-full shadow-lg border border-pink-200 text-pink-600 hover:scale-110 transition-all cursor-pointer">
+        <i id="musicIcon" class="fas fa-music text-xl"></i>
+    </button>
 
+    <!-- Audio Player -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Nayla.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function playAudio() {
-            var audio = document.getElementById('bgMusic');
-            if (audio) {
-                audio.play().catch(function(err) {
-                    console.log("Autoplay terhalang:", err);
-                });
-            }
+        const audio = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicToggle');
+        const icon = document.getElementById('musicIcon');
+
+        // Autoplay saat pertama kali layar diklik
+        function startAudio() {
+            audio.play().then(() => {
+                icon.className = 'fas fa-music text-xl text-pink-600 animate-bounce';
+            }).catch(err => console.log("Autoplay terhalang:", err));
+            
+            document.removeEventListener('click', startAudio);
         }
-        document.addEventListener('click', playAudio, { once: true });
+        document.addEventListener('click', startAudio);
+
+        // Tombol ON/OFF musik
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Biar gak bentrok sama event click document
+            
+            if (!audio.paused) {
+                audio.pause();
+                icon.className = 'fas fa-volume-mute text-xl text-gray-400';
+            } else {
+                audio.play();
+                icon.className = 'fas fa-music text-xl text-pink-600 animate-bounce';
+            }
+        });
     </script>
 
 </body>
